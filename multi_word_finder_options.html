@@ -1,0 +1,97 @@
+<html data-ng-app="mwfApp">
+<head>
+<title>Multi Word Finder Options</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width" />
+
+<link rel="stylesheet"
+	href="angular-material.min.css">
+
+<link rel="shortcut icon" type="image/x-icon" href="icon2.png">
+
+</head>
+<body data-ng-controller="mwfCtrl" ng-cloak>
+<md-content class="md-padding" layout="row">
+<div flex="25"></div>
+<md-card flex="50">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Multi Word Finder Options</span>
+          </md-card-title-text>
+        </md-card-title>
+		<md-divider></md-divider>
+        <md-card-content>
+		
+		<div layout="row">
+		<div flex="50"></div>
+		<div flex="25">
+	<md-checkbox data-ng-disabled = "keySetNames.length === 0" data-ng-model="autoSearchEnabled" data-ng-change="updateAutoSearchOpt()" aria-label="autoSearchEnabled">
+            Enable auto search
+          </md-checkbox>
+		  </div>
+		  <div flex="25">
+		  <md-input-container style="min-width: 150px;">
+          <label>Collection</label>
+          <md-select data-ng-disabled="!autoSearchEnabled" data-ng-model="autoSearchSet" data-ng-change="updateAutoSearchOpt()">
+            <md-option value="-1"><em>None</em></md-option>
+            <md-option data-ng-repeat = "keyset in keySetNames" value="{{keyset}}">
+              {{keyset}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+		  </div>
+		</div>
+		
+		
+          <div layout="row" layout-align="center center">
+		  <div flex>
+		  <md-input-container style="min-width: 150px;">
+          <label>Collection</label>
+          <md-select data-ng-model = "selectedKeySetName" data-ng-change="loadCollectionWords()">
+            <md-option value="-1"><em>Select</em></md-option>
+            <md-option data-ng-repeat = "keyset in keySetNames" value="{{keyset}}">
+              {{keyset}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+		  
+		  <md-button class="md-icon-button" aria-label="Add" data-ng-click="addCollectionPopup($event)">
+        <md-icon md-svg-icon="img/plus.svg"></md-icon>
+      </md-button>
+		  
+		  <md-button class="md-icon-button" aria-label="Delete" data-ng-click="deleteCollection($event)">
+        <md-icon md-svg-icon="img/garbage.svg"></md-icon>
+      </md-button>
+		  </div>
+		  
+			</div>
+			
+		  <div data-ng-hide="selectedKeySetName === '-1'">
+		  <div layout="row" layout-align="center center">
+		  <div flex>
+		  <h1>{{selectedKeySetName}}</h1>
+		  </div>
+		  </div>
+		
+		<md-chips ng-model="keySetValues" readonly="false" md-removable="true" md-enable-chip-edit="true" placeholder="Enter a word" secondary-placeholder="+word" 
+		md-on-add = "saveCollection()" md-on-remove = "saveCollection()" md-on-select = "saveCollection()">
+		<input type="text" ng-trim="false" placeholder="Enter a word">
+		</md-chips>
+		<!--md-transform-chip="transform($chip)"-->
+		
+		
+		</div>
+        </md-card-content>
+      </md-card>
+    
+</md-content>
+
+
+<script src="angular.min.js"></script>
+<script src="angular-animate.js"></script>
+<script src="angular-aria.min.js"></script>
+<script src="angular-messages.min.js"></script>
+<script src="angular-material.js"></script>
+<script src="multi_word_finder_options.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Create a new collection</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-padding">
+      <div layout="row" layout-align="center center">
+		  <div flex="65">
+		  <md-input-container class="md-block">
+            <label>New collection</label>
+            <input data-ng-model = "keySetName" auto-focus ng-keydown="checkEnter($event)">
+          </md-input-container>
+		  </div>
+		  <div flex="10"></div>
+		  <div flex="15">
+			<md-button class="md-icon-button" aria-label="Add" data-ng-click="addKeySetName()">
+				<md-icon md-svg-icon="img/success.svg"></md-icon>
+			  </md-button>
+		  </div>
+		  </div>
+    </md-dialog-content>
+
+  </form>
+</md-dialog>
